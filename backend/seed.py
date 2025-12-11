@@ -8,9 +8,9 @@ API_URL = "http://localhost:8000/api/v1"
 
 # Erst einen Admin-User registrieren
 ADMIN_USER = {
-    "email": "admin@x-royal-time.local",
-    "password": "admin123",
-    "full_name": "Administrator"
+    "email": "tb@wlanium.de",
+    "password": "Continentale112!!",
+    "full_name": "Thomas Bartelt"
 }
 
 # Rumänische Mitarbeiter
