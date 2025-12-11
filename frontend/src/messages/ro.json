@@ -47,8 +47,9 @@
   "employees": {
     "title": "Gestionare Angajați",
     "addEmployee": "Adaugă Angajat",
+    "name": "Nume",
     "firstName": "Prenume",
-    "lastName": "Nume",
+    "lastName": "Nume familie",
     "email": "Email",
     "phone": "Telefon",
     "department": "Departament",

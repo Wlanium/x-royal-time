@@ -1,22 +1,76 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Plus, Upload, FileSpreadsheet } from "lucide-react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
+import { Plus, Upload, FileSpreadsheet, Loader2, Check, X } from "lucide-react";
+
+interface Project {
+  id: number;
+  project_number: string | null;
+  name: string;
+  description: string | null;
+  client_name: string | null;
+  client_reference: string | null;
+  budget_hours: string | null;
+  hourly_rate: string | null;
+  is_billable: boolean;
+  is_active: boolean;
+  employee_ids: number[];
+}
 
 export default function ProjectsPage() {
   const t = useTranslations("projects");
   const tCommon = useTranslations("common");
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [importing, setImporting] = useState(false);
   const [importResult, setImportResult] = useState<{
     imported: number;
     skipped: number;
     errors: string[];
   } | null>(null);
+
+  const fetchProjects = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}/api/v1/projects/`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch projects");
+      }
+
+      const data = await res.json();
+      setProjects(data);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error loading projects");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
 
   const handleImportCSV = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -47,6 +101,8 @@ export default function ProjectsPage() {
 
       const data = await res.json();
       setImportResult(data);
+      // Refresh projects list
+      fetchProjects();
     } catch (err) {
       setImportResult({
         imported: 0,
@@ -95,7 +151,11 @@ export default function ProjectsPage() {
               <FileSpreadsheet className="h-8 w-8 text-muted-foreground" />
               <div>
                 <p className="font-medium">
-                  {t("importSuccess")}: {importResult.imported} {t("importedCount", { count: importResult.imported }).split(" ").slice(1).join(" ")}
+                  {t("importSuccess")}: {importResult.imported}{" "}
+                  {t("importedCount", { count: importResult.imported })
+                    .split(" ")
+                    .slice(1)
+                    .join(" ")}
                 </p>
                 {importResult.skipped > 0 && (
                   <p className="text-sm text-muted-foreground">
@@ -129,7 +189,54 @@ export default function ProjectsPage() {
           <CardTitle>{t("title")}</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground">Noch keine Projekte angelegt. / No projects yet.</p>
+          {loading ? (
+            <div className="flex items-center justify-center py-8">
+              <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+            </div>
+          ) : error ? (
+            <p className="text-red-500">{error}</p>
+          ) : projects.length === 0 ? (
+            <p className="text-muted-foreground">
+              Noch keine Projekte angelegt. / No projects yet.
+            </p>
+          ) : (
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>{t("projectNumber")}</TableHead>
+                  <TableHead>{t("name")}</TableHead>
+                  <TableHead>{t("clientName")}</TableHead>
+                  <TableHead className="text-right">{t("budgetHours")}</TableHead>
+                  <TableHead className="text-right">{t("hourlyRate")}</TableHead>
+                  <TableHead className="text-center">{t("isBillable")}</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {projects.map((proj) => (
+                  <TableRow key={proj.id}>
+                    <TableCell className="font-mono">
+                      {proj.project_number || "-"}
+                    </TableCell>
+                    <TableCell className="font-medium">{proj.name}</TableCell>
+                    <TableCell>{proj.client_name || "-"}</TableCell>
+                    <TableCell className="text-right">
+                      {proj.budget_hours ? `${proj.budget_hours}h` : "-"}
+                    </TableCell>
+                    <TableCell className="text-right">
+                      {proj.hourly_rate ? `€${proj.hourly_rate}` : "-"}
+                    </TableCell>
+                    <TableCell className="text-center">
+                      {proj.is_billable ? (
+                        <Check className="h-4 w-4 mx-auto text-green-600" />
+                      ) : (
+                        <X className="h-4 w-4 mx-auto text-muted-foreground" />
+                      )}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )}
         </CardContent>
       </Card>
     </div>

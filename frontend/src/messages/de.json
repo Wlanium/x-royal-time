@@ -47,6 +47,7 @@
   "employees": {
     "title": "Mitarbeiterverwaltung",
     "addEmployee": "Mitarbeiter hinzufügen",
+    "name": "Name",
     "firstName": "Vorname",
     "lastName": "Nachname",
     "email": "E-Mail",

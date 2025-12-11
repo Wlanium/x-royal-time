@@ -47,6 +47,7 @@
   "employees": {
     "title": "Employee Management",
     "addEmployee": "Add Employee",
+    "name": "Name",
     "firstName": "First Name",
     "lastName": "Last Name",
     "email": "Email",
