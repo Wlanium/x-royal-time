@@ -42,7 +42,8 @@
     "vacations": "Concedii",
     "timeTracking": "Pontaj",
     "reports": "Rapoarte",
-    "settings": "Setări"
+    "settings": "Setări",
+    "logout": "Deconectare"
   },
   "employees": {
     "title": "Gestionare Angajați",

@@ -42,7 +42,8 @@
     "vacations": "Urlaub",
     "timeTracking": "Zeiterfassung",
     "reports": "Berichte",
-    "settings": "Einstellungen"
+    "settings": "Einstellungen",
+    "logout": "Abmelden"
   },
   "employees": {
     "title": "Mitarbeiterverwaltung",

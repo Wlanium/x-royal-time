@@ -42,7 +42,8 @@
     "vacations": "Vacations",
     "timeTracking": "Time Tracking",
     "reports": "Reports",
-    "settings": "Settings"
+    "settings": "Settings",
+    "logout": "Logout"
   },
   "employees": {
     "title": "Employee Management",
