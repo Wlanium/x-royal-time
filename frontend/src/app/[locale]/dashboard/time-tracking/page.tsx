@@ -260,12 +260,12 @@ export default function TimeTrackingPage() {
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
         <h1 className="text-3xl font-bold">{t("title")}</h1>
         <div className="flex items-center gap-4">
-          <Select value={selectedEmployee} onValueChange={setSelectedEmployee}>
+          <Select value={selectedEmployee || "all"} onValueChange={(v) => setSelectedEmployee(v === "all" ? "" : v)}>
             <SelectTrigger className="w-[200px]">
               <SelectValue placeholder="Alle Mitarbeiter" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Alle Mitarbeiter</SelectItem>
+              <SelectItem value="all">Alle Mitarbeiter</SelectItem>
               {employees.map((emp) => (
                 <SelectItem key={emp.id} value={emp.id.toString()}>
                   {emp.first_name} {emp.last_name}
@@ -468,14 +468,14 @@ export default function TimeTrackingPage() {
             <div className="space-y-2">
               <Label>{t("project")}</Label>
               <Select
-                value={formData.project_id}
-                onValueChange={(v) => setFormData({ ...formData, project_id: v })}
+                value={formData.project_id || "none"}
+                onValueChange={(v) => setFormData({ ...formData, project_id: v === "none" ? "" : v })}
               >
                 <SelectTrigger>
                   <SelectValue placeholder={t("noProject")} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">{t("noProject")}</SelectItem>
+                  <SelectItem value="none">{t("noProject")}</SelectItem>
                   {projects.map((proj) => (
                     <SelectItem key={proj.id} value={proj.id.toString()}>
                       {proj.project_number && `[${proj.project_number}] `}
