@@ -35,7 +35,17 @@ export default function RegisterPage() {
 
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.detail || "Registration failed");
+        // Handle different error formats from FastAPI
+        let errorMessage = "Registration failed";
+        if (typeof data.detail === "string") {
+          errorMessage = data.detail;
+        } else if (Array.isArray(data.detail)) {
+          // Validation error array
+          errorMessage = data.detail.map((e: any) => e.msg || e.message || JSON.stringify(e)).join(", ");
+        } else if (data.detail) {
+          errorMessage = JSON.stringify(data.detail);
+        }
+        throw new Error(errorMessage);
       }
 
       router.push("/login");

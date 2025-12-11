@@ -52,6 +52,7 @@ async def register(user_in: UserCreate, db: AsyncSession = Depends(get_db)):
         full_name=user_in.full_name,
         language=user_in.language,
         is_superuser=is_first_user,
+        role="admin" if is_first_user else "employee",  # First user is admin
     )
     db.add(user)
     await db.commit()
