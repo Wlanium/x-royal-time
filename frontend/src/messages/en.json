@@ -1,0 +1,80 @@
+{
+  "common": {
+    "appName": "X-Royal-Time",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "actions": "Actions",
+    "yes": "Yes",
+    "no": "No",
+    "confirm": "Confirm"
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "fullName": "Full Name",
+    "loginTitle": "Sign In",
+    "registerTitle": "Sign Up",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "employees": "Employees",
+    "timeTracking": "Time Tracking",
+    "reports": "Reports",
+    "settings": "Settings"
+  },
+  "employees": {
+    "title": "Employee Management",
+    "addEmployee": "Add Employee",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "department": "Department",
+    "position": "Position",
+    "hireDate": "Hire Date",
+    "weeklyHours": "Weekly Hours",
+    "employeeNumber": "Employee Number",
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "timeTracking": {
+    "title": "Time Tracking",
+    "addEntry": "Add Entry",
+    "date": "Date",
+    "startTime": "Start Time",
+    "endTime": "End Time",
+    "breakMinutes": "Break (min)",
+    "type": "Type",
+    "notes": "Notes",
+    "types": {
+      "work": "Work",
+      "break": "Break",
+      "vacation": "Vacation",
+      "sick": "Sick",
+      "holiday": "Holiday"
+    }
+  },
+  "holidays": {
+    "title": "Holidays",
+    "romania": "Romania"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "languages": {
+      "de": "German",
+      "en": "English",
+      "ro": "Romanian"
+    }
+  }
+}

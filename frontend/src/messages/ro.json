@@ -1,0 +1,80 @@
+{
+  "common": {
+    "appName": "X-Royal-Time",
+    "loading": "Se încarcă...",
+    "save": "Salvează",
+    "cancel": "Anulează",
+    "delete": "Șterge",
+    "edit": "Editează",
+    "add": "Adaugă",
+    "search": "Caută",
+    "actions": "Acțiuni",
+    "yes": "Da",
+    "no": "Nu",
+    "confirm": "Confirmă"
+  },
+  "auth": {
+    "login": "Autentificare",
+    "logout": "Deconectare",
+    "register": "Înregistrare",
+    "email": "Email",
+    "password": "Parolă",
+    "fullName": "Nume complet",
+    "loginTitle": "Conectare",
+    "registerTitle": "Înregistrare",
+    "noAccount": "Nu ai cont?",
+    "hasAccount": "Ai deja cont?"
+  },
+  "nav": {
+    "dashboard": "Panou",
+    "employees": "Angajați",
+    "timeTracking": "Pontaj",
+    "reports": "Rapoarte",
+    "settings": "Setări"
+  },
+  "employees": {
+    "title": "Gestionare Angajați",
+    "addEmployee": "Adaugă Angajat",
+    "firstName": "Prenume",
+    "lastName": "Nume",
+    "email": "Email",
+    "phone": "Telefon",
+    "department": "Departament",
+    "position": "Funcție",
+    "hireDate": "Data angajării",
+    "weeklyHours": "Ore săptămânale",
+    "employeeNumber": "Număr angajat",
+    "active": "Activ",
+    "inactive": "Inactiv"
+  },
+  "timeTracking": {
+    "title": "Pontaj",
+    "addEntry": "Adaugă înregistrare",
+    "date": "Data",
+    "startTime": "Ora de început",
+    "endTime": "Ora de sfârșit",
+    "breakMinutes": "Pauză (min)",
+    "type": "Tip",
+    "notes": "Note",
+    "types": {
+      "work": "Muncă",
+      "break": "Pauză",
+      "vacation": "Concediu",
+      "sick": "Concediu medical",
+      "holiday": "Sărbătoare"
+    }
+  },
+  "holidays": {
+    "title": "Sărbători legale",
+    "romania": "România"
+  },
+  "settings": {
+    "title": "Setări",
+    "language": "Limbă",
+    "languages": {
+      "de": "Germană",
+      "en": "Engleză",
+      "ro": "Română"
+    }
+  }
+}

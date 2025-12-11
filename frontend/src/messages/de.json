@@ -1,0 +1,80 @@
+{
+  "common": {
+    "appName": "X-Royal-Time",
+    "loading": "Laden...",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "add": "Hinzufügen",
+    "search": "Suchen",
+    "actions": "Aktionen",
+    "yes": "Ja",
+    "no": "Nein",
+    "confirm": "Bestätigen"
+  },
+  "auth": {
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "register": "Registrieren",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "fullName": "Vollständiger Name",
+    "loginTitle": "Anmeldung",
+    "registerTitle": "Registrierung",
+    "noAccount": "Noch kein Konto?",
+    "hasAccount": "Bereits ein Konto?"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "employees": "Mitarbeiter",
+    "timeTracking": "Zeiterfassung",
+    "reports": "Berichte",
+    "settings": "Einstellungen"
+  },
+  "employees": {
+    "title": "Mitarbeiterverwaltung",
+    "addEmployee": "Mitarbeiter hinzufügen",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "department": "Abteilung",
+    "position": "Position",
+    "hireDate": "Eintrittsdatum",
+    "weeklyHours": "Wochenstunden",
+    "employeeNumber": "Personalnummer",
+    "active": "Aktiv",
+    "inactive": "Inaktiv"
+  },
+  "timeTracking": {
+    "title": "Zeiterfassung",
+    "addEntry": "Eintrag hinzufügen",
+    "date": "Datum",
+    "startTime": "Startzeit",
+    "endTime": "Endzeit",
+    "breakMinutes": "Pause (Min.)",
+    "type": "Typ",
+    "notes": "Notizen",
+    "types": {
+      "work": "Arbeit",
+      "break": "Pause",
+      "vacation": "Urlaub",
+      "sick": "Krank",
+      "holiday": "Feiertag"
+    }
+  },
+  "holidays": {
+    "title": "Feiertage",
+    "romania": "Rumänien"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "language": "Sprache",
+    "languages": {
+      "de": "Deutsch",
+      "en": "Englisch",
+      "ro": "Rumänisch"
+    }
+  }
+}
