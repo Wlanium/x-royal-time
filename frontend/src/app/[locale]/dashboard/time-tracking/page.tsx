@@ -388,17 +388,15 @@ export default function TimeTrackingPage() {
                       </div>
                     )}
 
-                    {entries.length === 0 && (
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="mt-2 text-muted-foreground"
-                        onClick={() => openModal(undefined, dateStr)}
-                      >
-                        <Plus className="h-3 w-3 mr-1" />
-                        {t("addEntry")}
-                      </Button>
-                    )}
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="mt-2 text-muted-foreground"
+                      onClick={() => openModal(undefined, dateStr)}
+                    >
+                      <Plus className="h-3 w-3 mr-1" />
+                      {t("addEntry")}
+                    </Button>
                   </div>
                 </div>
               </CardContent>
