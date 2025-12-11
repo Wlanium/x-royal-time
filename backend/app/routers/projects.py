@@ -74,7 +74,14 @@ async def create_project(
 
     db.add(project)
     await db.commit()
-    await db.refresh(project)
+
+    # Reload with employees relationship
+    result = await db.execute(
+        select(Project)
+        .options(selectinload(Project.employees))
+        .where(Project.id == project.id)
+    )
+    project = result.scalar_one()
 
     return ProjectRead(
         id=project.id,
