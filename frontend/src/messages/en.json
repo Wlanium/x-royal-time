@@ -129,6 +129,8 @@
     "project": "Project",
     "selectProject": "Select project",
     "noProject": "No project",
+    "hasEntries": "Already has entries",
+    "overlapWarning": "Time overlap with existing entry",
     "types": {
       "work": "Work",
       "break": "Break",

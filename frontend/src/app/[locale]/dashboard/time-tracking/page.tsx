@@ -239,6 +239,49 @@ export default function TimeTrackingPage() {
     return proj ? proj.name : "-";
   };
 
+  // Check if employee has entries on a specific date
+  const employeeHasEntriesOnDate = (empId: number, dateStr: string): boolean => {
+    return timeEntries.some((e) => e.employee_id === empId && e.date === dateStr);
+  };
+
+  // Check for overlapping time entries
+  const checkTimeOverlap = (): { hasOverlap: boolean; message: string } => {
+    if (!formData.start_time || !formData.end_time || !formData.employee_id || !formData.date) {
+      return { hasOverlap: false, message: "" };
+    }
+
+    const [newStartH, newStartM] = formData.start_time.split(":").map(Number);
+    const [newEndH, newEndM] = formData.end_time.split(":").map(Number);
+    const newStart = newStartH * 60 + newStartM;
+    const newEnd = newEndH * 60 + newEndM;
+
+    const existingEntries = timeEntries.filter(
+      (e) =>
+        e.employee_id === parseInt(formData.employee_id) &&
+        e.date === formData.date &&
+        e.id !== editingEntry?.id && // Exclude current entry when editing
+        e.start_time &&
+        e.end_time
+    );
+
+    for (const entry of existingEntries) {
+      const [existStartH, existStartM] = entry.start_time!.split(":").map(Number);
+      const [existEndH, existEndM] = entry.end_time!.split(":").map(Number);
+      const existStart = existStartH * 60 + existStartM;
+      const existEnd = existEndH * 60 + existEndM;
+
+      // Check for overlap: new entry overlaps if it starts before existing ends AND ends after existing starts
+      if (newStart < existEnd && newEnd > existStart) {
+        return {
+          hasOverlap: true,
+          message: `${entry.start_time?.slice(0, 5)} - ${entry.end_time?.slice(0, 5)}`,
+        };
+      }
+    }
+
+    return { hasOverlap: false, message: "" };
+  };
+
   const entryTypeColors: Record<string, string> = {
     work: "bg-blue-500",
     break: "bg-gray-400",
@@ -454,11 +497,19 @@ export default function TimeTrackingPage() {
                   <SelectValue placeholder={t("selectEmployee")} />
                 </SelectTrigger>
                 <SelectContent>
-                  {employees.map((emp) => (
-                    <SelectItem key={emp.id} value={emp.id.toString()}>
-                      {emp.first_name} {emp.last_name}
-                    </SelectItem>
-                  ))}
+                  {employees.map((emp) => {
+                    const hasEntries = employeeHasEntriesOnDate(emp.id, formData.date);
+                    return (
+                      <SelectItem key={emp.id} value={emp.id.toString()}>
+                        <span className="flex items-center gap-2">
+                          {emp.first_name} {emp.last_name}
+                          {hasEntries && (
+                            <span className="w-2 h-2 rounded-full bg-blue-500" title={t("hasEntries")} />
+                          )}
+                        </span>
+                      </SelectItem>
+                    );
+                  })}
                 </SelectContent>
               </Select>
             </div>
@@ -519,6 +570,13 @@ export default function TimeTrackingPage() {
                 placeholder="Optional"
               />
             </div>
+
+            {/* Overlap Warning */}
+            {checkTimeOverlap().hasOverlap && (
+              <div className="bg-destructive/10 border border-destructive/30 text-destructive rounded-md p-3 text-sm">
+                ⚠️ {t("overlapWarning")}: {checkTimeOverlap().message}
+              </div>
+            )}
           </div>
           <DialogFooter className="flex justify-between">
             <div>
@@ -533,7 +591,10 @@ export default function TimeTrackingPage() {
               <Button variant="outline" onClick={() => setIsModalOpen(false)}>
                 {tCommon("cancel")}
               </Button>
-              <Button onClick={handleSave} disabled={saving || !formData.employee_id}>
+              <Button
+                onClick={handleSave}
+                disabled={saving || !formData.employee_id || checkTimeOverlap().hasOverlap}
+              >
                 {saving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                 {tCommon("save")}
               </Button>

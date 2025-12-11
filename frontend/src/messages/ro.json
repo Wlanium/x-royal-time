@@ -129,6 +129,8 @@
     "project": "Proiect",
     "selectProject": "Selectează proiect",
     "noProject": "Fără proiect",
+    "hasEntries": "Are deja înregistrări",
+    "overlapWarning": "Suprapunere de timp cu înregistrare existentă",
     "types": {
       "work": "Muncă",
       "break": "Pauză",
