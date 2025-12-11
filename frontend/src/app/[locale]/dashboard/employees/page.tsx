@@ -126,7 +126,7 @@ export default function EmployeesPage() {
       const url = selectedEmployee
         ? `${apiUrl}/api/v1/employees/${selectedEmployee.id}`
         : `${apiUrl}/api/v1/employees/`;
-      const method = selectedEmployee ? "PUT" : "POST";
+      const method = selectedEmployee ? "PATCH" : "POST";
 
       const res = await fetch(url, {
         method,
