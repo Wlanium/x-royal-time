@@ -57,6 +57,7 @@
     "hireDate": "Eintrittsdatum",
     "weeklyHours": "Wochenstunden",
     "employeeNumber": "Personalnummer",
+    "hourlyRate": "Stundensatz",
     "vacationDays": "Urlaubstage/Jahr",
     "active": "Aktiv",
     "inactive": "Inaktiv"

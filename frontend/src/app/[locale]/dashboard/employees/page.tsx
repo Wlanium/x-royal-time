@@ -31,6 +31,7 @@ interface Employee {
   email: string | null;
   department: string | null;
   position: string | null;
+  hourly_rate: string | null;
   vacation_days_per_year: number;
   is_active: boolean;
 }
@@ -51,6 +52,7 @@ export default function EmployeesPage() {
     employee_number: "",
     department: "",
     position: "",
+    hourly_rate: "",
     vacation_days_per_year: 21,
   });
 
@@ -93,6 +95,7 @@ export default function EmployeesPage() {
         employee_number: employee.employee_number || "",
         department: employee.department || "",
         position: employee.position || "",
+        hourly_rate: employee.hourly_rate || "",
         vacation_days_per_year: employee.vacation_days_per_year,
       });
     } else {
@@ -104,6 +107,7 @@ export default function EmployeesPage() {
         employee_number: "",
         department: "",
         position: "",
+        hourly_rate: "",
         vacation_days_per_year: 21,
       });
     }
@@ -132,6 +136,7 @@ export default function EmployeesPage() {
           employee_number: formData.employee_number || null,
           department: formData.department || null,
           position: formData.position || null,
+          hourly_rate: formData.hourly_rate ? parseFloat(formData.hourly_rate) : null,
         }),
       });
 
@@ -179,6 +184,7 @@ export default function EmployeesPage() {
                   <TableHead>{t("name")}</TableHead>
                   <TableHead>{t("department")}</TableHead>
                   <TableHead>{t("position")}</TableHead>
+                  <TableHead className="text-right">{t("hourlyRate")}</TableHead>
                   <TableHead className="text-right">{t("vacationDays")}</TableHead>
                 </TableRow>
               </TableHeader>
@@ -197,6 +203,9 @@ export default function EmployeesPage() {
                     </TableCell>
                     <TableCell>{emp.department || "-"}</TableCell>
                     <TableCell>{emp.position || "-"}</TableCell>
+                    <TableCell className="text-right">
+                      {emp.hourly_rate ? `€${emp.hourly_rate}` : "-"}
+                    </TableCell>
                     <TableCell className="text-right">
                       {emp.vacation_days_per_year}
                     </TableCell>
@@ -271,14 +280,27 @@ export default function EmployeesPage() {
                 />
               </div>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="vacation_days">{t("vacationDays")}</Label>
-              <Input
-                id="vacation_days"
-                type="number"
-                value={formData.vacation_days_per_year}
-                onChange={(e) => setFormData({ ...formData, vacation_days_per_year: parseInt(e.target.value) || 0 })}
-              />
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="hourly_rate">{t("hourlyRate")} (€)</Label>
+                <Input
+                  id="hourly_rate"
+                  type="number"
+                  step="0.01"
+                  value={formData.hourly_rate}
+                  onChange={(e) => setFormData({ ...formData, hourly_rate: e.target.value })}
+                  placeholder="0.30"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="vacation_days">{t("vacationDays")}</Label>
+                <Input
+                  id="vacation_days"
+                  type="number"
+                  value={formData.vacation_days_per_year}
+                  onChange={(e) => setFormData({ ...formData, vacation_days_per_year: parseInt(e.target.value) || 0 })}
+                />
+              </div>
             </div>
           </div>
           <DialogFooter>

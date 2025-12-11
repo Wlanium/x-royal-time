@@ -57,6 +57,7 @@
     "hireDate": "Data angajării",
     "weeklyHours": "Ore săptămânale",
     "employeeNumber": "Număr angajat",
+    "hourlyRate": "Tarif orar",
     "vacationDays": "Zile concediu/An",
     "active": "Activ",
     "inactive": "Inactiv"

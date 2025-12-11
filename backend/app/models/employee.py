@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date, DateTime, Boolean, ForeignKey
+from sqlalchemy import Column, Integer, String, Date, DateTime, Boolean, ForeignKey, Numeric
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 from app.database import Base
@@ -21,8 +21,9 @@ class Employee(Base):
     termination_date = Column(Date, nullable=True)
     is_active = Column(Boolean, default=True)
 
-    # Working hours config
+    # Working hours & rate config
     weekly_hours = Column(Integer, default=40)
+    hourly_rate = Column(Numeric(10, 2), nullable=True)  # €/Stunde
 
     # Vacation config (Urlaubstage pro Jahr)
     vacation_days_per_year = Column(Integer, default=25)  # Rumänien: 20-25 Tage

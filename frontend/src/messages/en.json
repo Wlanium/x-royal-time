@@ -57,6 +57,7 @@
     "hireDate": "Hire Date",
     "weeklyHours": "Weekly Hours",
     "employeeNumber": "Employee Number",
+    "hourlyRate": "Hourly Rate",
     "vacationDays": "Vacation Days/Year",
     "active": "Active",
     "inactive": "Inactive"
