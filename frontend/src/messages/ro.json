@@ -115,6 +115,11 @@
   "timeTracking": {
     "title": "Pontaj",
     "addEntry": "Adaugă înregistrare",
+    "entry": "Înregistrare timp",
+    "allEmployees": "Toți angajații",
+    "selectEmployee": "Selectează angajat",
+    "employee": "Angajat",
+    "total": "Total",
     "date": "Data",
     "startTime": "Ora de început",
     "endTime": "Ora de sfârșit",

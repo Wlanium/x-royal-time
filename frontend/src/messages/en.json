@@ -115,6 +115,11 @@
   "timeTracking": {
     "title": "Time Tracking",
     "addEntry": "Add Entry",
+    "entry": "Time Entry",
+    "allEmployees": "All Employees",
+    "selectEmployee": "Select employee",
+    "employee": "Employee",
+    "total": "Total",
     "date": "Date",
     "startTime": "Start Time",
     "endTime": "End Time",

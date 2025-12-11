@@ -262,10 +262,10 @@ export default function TimeTrackingPage() {
         <div className="flex items-center gap-4">
           <Select value={selectedEmployee || "all"} onValueChange={(v) => setSelectedEmployee(v === "all" ? "" : v)}>
             <SelectTrigger className="w-[200px]">
-              <SelectValue placeholder="Alle Mitarbeiter" />
+              <SelectValue placeholder={t("allEmployees")} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">Alle Mitarbeiter</SelectItem>
+              <SelectItem value="all">{t("allEmployees")}</SelectItem>
               {employees.map((emp) => (
                 <SelectItem key={emp.id} value={emp.id.toString()}>
                   {emp.first_name} {emp.last_name}
@@ -292,7 +292,7 @@ export default function TimeTrackingPage() {
                 {formatDate(weekDates[0])} - {formatDate(weekDates[6])}
               </p>
               <p className="text-sm text-muted-foreground">
-                Gesamt: <span className="font-bold">{weekTotalHours.toFixed(1)}h</span>
+                {t("total")}: <span className="font-bold">{weekTotalHours.toFixed(1)}h</span>
               </p>
             </div>
             <Button variant="outline" size="icon" onClick={() => setWeekOffset((o) => o + 1)}>
@@ -396,7 +396,7 @@ export default function TimeTrackingPage() {
                         onClick={() => openModal(undefined, dateStr)}
                       >
                         <Plus className="h-3 w-3 mr-1" />
-                        Eintrag hinzufügen
+                        {t("addEntry")}
                       </Button>
                     )}
                   </div>
@@ -413,7 +413,7 @@ export default function TimeTrackingPage() {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Clock className="h-5 w-5" />
-              {editingEntry ? `${tCommon("edit")} Zeiteintrag` : t("addEntry")}
+              {editingEntry ? `${tCommon("edit")} ${t("entry")}` : t("addEntry")}
             </DialogTitle>
           </DialogHeader>
           <div className="grid gap-4 py-4">
@@ -447,13 +447,13 @@ export default function TimeTrackingPage() {
             </div>
 
             <div className="space-y-2">
-              <Label>Mitarbeiter *</Label>
+              <Label>{t("employee")} *</Label>
               <Select
                 value={formData.employee_id}
                 onValueChange={(v) => setFormData({ ...formData, employee_id: v })}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Mitarbeiter wählen" />
+                  <SelectValue placeholder={t("selectEmployee")} />
                 </SelectTrigger>
                 <SelectContent>
                   {employees.map((emp) => (

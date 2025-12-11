@@ -115,6 +115,11 @@
   "timeTracking": {
     "title": "Zeiterfassung",
     "addEntry": "Eintrag hinzufügen",
+    "entry": "Zeiteintrag",
+    "allEmployees": "Alle Mitarbeiter",
+    "selectEmployee": "Mitarbeiter wählen",
+    "employee": "Mitarbeiter",
+    "total": "Gesamt",
     "date": "Datum",
     "startTime": "Startzeit",
     "endTime": "Endzeit",
