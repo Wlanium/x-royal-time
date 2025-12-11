@@ -22,16 +22,25 @@ EMPLOYEES = [
     {"first_name": "Vlad", "last_name": "Radu", "employee_number": "EMP-005", "department": "IT", "position": "Team Lead", "vacation_days_per_year": 28},
 ]
 
-# Beispiel-Projekte
+# Beispiel-Projekte (budget_hours und hourly_rate als String für Decimal)
 PROJECTS = [
-    {"project_number": "PRJ-001", "name": "Website Redesign", "client_name": "Kunde AG", "budget_hours": 100, "hourly_rate": 85.00, "is_billable": True},
-    {"project_number": "PRJ-002", "name": "Mobile App", "client_name": "Firma GmbH", "budget_hours": 200, "hourly_rate": 95.00, "is_billable": True},
-    {"project_number": "PRJ-INT", "name": "Interne Entwicklung", "client_name": "Intern", "budget_hours": 500, "hourly_rate": 0, "is_billable": False},
+    {"project_number": "PRJ-001", "name": "Website Redesign", "client_name": "Kunde AG", "budget_hours": "100", "hourly_rate": "85.00", "is_billable": True},
+    {"project_number": "PRJ-002", "name": "Mobile App", "client_name": "Firma GmbH", "budget_hours": "200", "hourly_rate": "95.00", "is_billable": True},
+    {"project_number": "PRJ-INT", "name": "Interne Entwicklung", "client_name": "Intern", "budget_hours": "500", "hourly_rate": "0", "is_billable": False},
 ]
 
 
+def get_error_msg(resp):
+    """Safely get error message from response"""
+    try:
+        data = resp.json()
+        return data.get('detail', str(data))
+    except:
+        return f"HTTP {resp.status_code}: {resp.text[:100]}"
+
+
 async def main():
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=30.0) as client:
         # 1. Register admin user
         print("🔐 Registriere Admin-User...")
         try:
@@ -41,41 +50,51 @@ async def main():
             elif resp.status_code == 400:
                 print(f"   → Admin existiert bereits")
             else:
-                print(f"   ✗ Fehler: {resp.text}")
+                print(f"   ✗ Fehler: {get_error_msg(resp)}")
         except Exception as e:
             print(f"   ✗ Fehler: {e}")
 
         # 2. Login
         print("\n🔑 Login...")
-        resp = await client.post(
-            f"{API_URL}/auth/login",
-            data={"username": ADMIN_USER["email"], "password": ADMIN_USER["password"]}
-        )
-        if resp.status_code != 200:
-            print(f"   ✗ Login fehlgeschlagen: {resp.text}")
-            return
+        try:
+            resp = await client.post(
+                f"{API_URL}/auth/login",
+                data={"username": ADMIN_USER["email"], "password": ADMIN_USER["password"]}
+            )
+            if resp.status_code != 200:
+                print(f"   ✗ Login fehlgeschlagen: {get_error_msg(resp)}")
+                return
 
-        token = resp.json()["access_token"]
-        headers = {"Authorization": f"Bearer {token}"}
-        print(f"   ✓ Eingeloggt!")
+            token = resp.json()["access_token"]
+            headers = {"Authorization": f"Bearer {token}"}
+            print(f"   ✓ Eingeloggt!")
+        except Exception as e:
+            print(f"   ✗ Login Fehler: {e}")
+            return
 
         # 3. Create employees
         print("\n👥 Erstelle Mitarbeiter...")
         for emp in EMPLOYEES:
-            resp = await client.post(f"{API_URL}/employees/", json=emp, headers=headers)
-            if resp.status_code == 200:
-                print(f"   ✓ {emp['first_name']} {emp['last_name']}")
-            else:
-                print(f"   → {emp['first_name']} {emp['last_name']}: {resp.json().get('detail', 'existiert bereits')}")
+            try:
+                resp = await client.post(f"{API_URL}/employees/", json=emp, headers=headers)
+                if resp.status_code == 200:
+                    print(f"   ✓ {emp['first_name']} {emp['last_name']}")
+                else:
+                    print(f"   → {emp['first_name']} {emp['last_name']}: {get_error_msg(resp)}")
+            except Exception as e:
+                print(f"   ✗ {emp['first_name']} {emp['last_name']}: {e}")
 
         # 4. Create projects
         print("\n📁 Erstelle Projekte...")
         for proj in PROJECTS:
-            resp = await client.post(f"{API_URL}/projects/", json=proj, headers=headers)
-            if resp.status_code == 200:
-                print(f"   ✓ {proj['name']}")
-            else:
-                print(f"   → {proj['name']}: {resp.json().get('detail', 'existiert bereits')}")
+            try:
+                resp = await client.post(f"{API_URL}/projects/", json=proj, headers=headers)
+                if resp.status_code == 200:
+                    print(f"   ✓ {proj['name']}")
+                else:
+                    print(f"   → {proj['name']}: {get_error_msg(resp)}")
+            except Exception as e:
+                print(f"   ✗ {proj['name']}: {e}")
 
         print("\n✅ Fertig!")
         print(f"\n📧 Login: {ADMIN_USER['email']}")
