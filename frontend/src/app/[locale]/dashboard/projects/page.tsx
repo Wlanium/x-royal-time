@@ -4,6 +4,9 @@ import { useEffect, useState, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 import {
   Table,
   TableBody,
@@ -12,7 +15,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
 import { Plus, Upload, FileSpreadsheet, Loader2, Check, X } from "lucide-react";
 
 interface Project {
@@ -42,6 +51,19 @@ export default function ProjectsPage() {
     skipped: number;
     errors: string[];
   } | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [formData, setFormData] = useState({
+    project_number: "",
+    name: "",
+    description: "",
+    client_name: "",
+    client_reference: "",
+    budget_hours: "",
+    hourly_rate: "",
+    is_billable: true,
+  });
 
   const fetchProjects = async () => {
     try {
@@ -72,6 +94,75 @@ export default function ProjectsPage() {
     fetchProjects();
   }, []);
 
+  const openModal = (project?: Project) => {
+    if (project) {
+      setSelectedProject(project);
+      setFormData({
+        project_number: project.project_number || "",
+        name: project.name,
+        description: project.description || "",
+        client_name: project.client_name || "",
+        client_reference: project.client_reference || "",
+        budget_hours: project.budget_hours || "",
+        hourly_rate: project.hourly_rate || "",
+        is_billable: project.is_billable,
+      });
+    } else {
+      setSelectedProject(null);
+      setFormData({
+        project_number: "",
+        name: "",
+        description: "",
+        client_name: "",
+        client_reference: "",
+        budget_hours: "",
+        hourly_rate: "",
+        is_billable: true,
+      });
+    }
+    setIsModalOpen(true);
+  };
+
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      const token = localStorage.getItem("token");
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      const url = selectedProject
+        ? `${apiUrl}/api/v1/projects/${selectedProject.id}`
+        : `${apiUrl}/api/v1/projects/`;
+      const method = selectedProject ? "PUT" : "POST";
+
+      const res = await fetch(url, {
+        method,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          project_number: formData.project_number || null,
+          description: formData.description || null,
+          client_name: formData.client_name || null,
+          client_reference: formData.client_reference || null,
+          budget_hours: formData.budget_hours ? parseFloat(formData.budget_hours) : null,
+          hourly_rate: formData.hourly_rate ? parseFloat(formData.hourly_rate) : null,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to save project");
+      }
+
+      setIsModalOpen(false);
+      fetchProjects();
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Error saving");
+    } finally {
+      setSaving(false);
+    }
+  };
+
   const handleImportCSV = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -101,7 +192,6 @@ export default function ProjectsPage() {
 
       const data = await res.json();
       setImportResult(data);
-      // Refresh projects list
       fetchProjects();
     } catch (err) {
       setImportResult({
@@ -137,7 +227,7 @@ export default function ProjectsPage() {
             <Upload className="mr-2 h-4 w-4" />
             {t("importCsv")}
           </Button>
-          <Button>
+          <Button onClick={() => openModal()}>
             <Plus className="mr-2 h-4 w-4" />
             {t("addProject")}
           </Button>
@@ -213,7 +303,11 @@ export default function ProjectsPage() {
               </TableHeader>
               <TableBody>
                 {projects.map((proj) => (
-                  <TableRow key={proj.id}>
+                  <TableRow
+                    key={proj.id}
+                    className="cursor-pointer hover:bg-muted"
+                    onClick={() => openModal(proj)}
+                  >
                     <TableCell className="font-mono">
                       {proj.project_number || "-"}
                     </TableCell>
@@ -239,6 +333,101 @@ export default function ProjectsPage() {
           )}
         </CardContent>
       </Card>
+
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="sm:max-w-[550px]">
+          <DialogHeader>
+            <DialogTitle>
+              {selectedProject ? `${tCommon("edit")} Projekt` : t("addProject")}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="project_number">{t("projectNumber")}</Label>
+                <Input
+                  id="project_number"
+                  value={formData.project_number}
+                  onChange={(e) => setFormData({ ...formData, project_number: e.target.value })}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="name">{t("name")} *</Label>
+                <Input
+                  id="name"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="description">{t("description")}</Label>
+              <Input
+                id="description"
+                value={formData.description}
+                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="client_name">{t("clientName")}</Label>
+                <Input
+                  id="client_name"
+                  value={formData.client_name}
+                  onChange={(e) => setFormData({ ...formData, client_name: e.target.value })}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="client_reference">{t("clientReference")}</Label>
+                <Input
+                  id="client_reference"
+                  value={formData.client_reference}
+                  onChange={(e) => setFormData({ ...formData, client_reference: e.target.value })}
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="budget_hours">{t("budgetHours")}</Label>
+                <Input
+                  id="budget_hours"
+                  type="number"
+                  step="0.5"
+                  value={formData.budget_hours}
+                  onChange={(e) => setFormData({ ...formData, budget_hours: e.target.value })}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="hourly_rate">{t("hourlyRate")} (€)</Label>
+                <Input
+                  id="hourly_rate"
+                  type="number"
+                  step="0.01"
+                  value={formData.hourly_rate}
+                  onChange={(e) => setFormData({ ...formData, hourly_rate: e.target.value })}
+                />
+              </div>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Switch
+                id="is_billable"
+                checked={formData.is_billable}
+                onCheckedChange={(checked) => setFormData({ ...formData, is_billable: checked })}
+              />
+              <Label htmlFor="is_billable">{t("isBillable")}</Label>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsModalOpen(false)}>
+              {tCommon("cancel")}
+            </Button>
+            <Button onClick={handleSave} disabled={saving || !formData.name}>
+              {saving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              {tCommon("save")}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
