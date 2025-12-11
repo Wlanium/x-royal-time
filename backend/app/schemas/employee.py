@@ -13,6 +13,7 @@ class EmployeeBase(BaseModel):
     position: Optional[str] = None
     hire_date: Optional[date] = None
     weekly_hours: int = 40
+    vacation_days_per_year: int = 25  # Urlaubstage pro Jahr
 
 
 class EmployeeCreate(EmployeeBase):
@@ -31,6 +32,7 @@ class EmployeeUpdate(BaseModel):
     termination_date: Optional[date] = None
     is_active: Optional[bool] = None
     weekly_hours: Optional[int] = None
+    vacation_days_per_year: Optional[int] = None
 
 
 class EmployeeRead(EmployeeBase):

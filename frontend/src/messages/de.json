@@ -15,7 +15,13 @@
     "import": "Importieren",
     "export": "Exportieren",
     "upload": "Hochladen",
-    "selectFile": "Datei auswählen"
+    "selectFile": "Datei auswählen",
+    "approve": "Genehmigen",
+    "reject": "Ablehnen",
+    "pending": "Ausstehend",
+    "approved": "Genehmigt",
+    "rejected": "Abgelehnt",
+    "days": "Tage"
   },
   "auth": {
     "login": "Anmelden",
@@ -33,6 +39,7 @@
     "dashboard": "Dashboard",
     "employees": "Mitarbeiter",
     "projects": "Projekte",
+    "vacations": "Urlaub",
     "timeTracking": "Zeiterfassung",
     "reports": "Berichte",
     "settings": "Einstellungen"
@@ -49,6 +56,7 @@
     "hireDate": "Eintrittsdatum",
     "weeklyHours": "Wochenstunden",
     "employeeNumber": "Personalnummer",
+    "vacationDays": "Urlaubstage/Jahr",
     "active": "Aktiv",
     "inactive": "Inaktiv"
   },
@@ -72,6 +80,35 @@
     "importSuccess": "Import erfolgreich",
     "importedCount": "{count} Projekte importiert",
     "csvFormat": "CSV Format: project_number,name,description,client_name,client_reference,budget_hours,hourly_rate,is_billable"
+  },
+  "vacations": {
+    "title": "Urlaubsverwaltung",
+    "calendar": "Urlaubskalender",
+    "addRequest": "Urlaub beantragen",
+    "employee": "Mitarbeiter",
+    "startDate": "Von",
+    "endDate": "Bis",
+    "daysCount": "Tage",
+    "status": "Status",
+    "notes": "Notizen",
+    "balance": "Urlaubskonto",
+    "totalDays": "Jahresurlaub",
+    "usedDays": "Genommen",
+    "pendingDays": "Beantragt",
+    "remainingDays": "Verbleibend",
+    "types": {
+      "vacation": "Urlaub",
+      "special_leave": "Sonderurlaub",
+      "unpaid": "Unbezahlt",
+      "sick": "Krank"
+    },
+    "statuses": {
+      "pending": "Ausstehend",
+      "approved": "Genehmigt",
+      "rejected": "Abgelehnt",
+      "cancelled": "Storniert"
+    },
+    "noRequests": "Keine Urlaubsanträge vorhanden"
   },
   "timeTracking": {
     "title": "Zeiterfassung",

@@ -15,7 +15,13 @@
     "import": "Import",
     "export": "Export",
     "upload": "Upload",
-    "selectFile": "Select file"
+    "selectFile": "Select file",
+    "approve": "Approve",
+    "reject": "Reject",
+    "pending": "Pending",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "days": "days"
   },
   "auth": {
     "login": "Login",
@@ -33,6 +39,7 @@
     "dashboard": "Dashboard",
     "employees": "Employees",
     "projects": "Projects",
+    "vacations": "Vacations",
     "timeTracking": "Time Tracking",
     "reports": "Reports",
     "settings": "Settings"
@@ -49,6 +56,7 @@
     "hireDate": "Hire Date",
     "weeklyHours": "Weekly Hours",
     "employeeNumber": "Employee Number",
+    "vacationDays": "Vacation Days/Year",
     "active": "Active",
     "inactive": "Inactive"
   },
@@ -72,6 +80,35 @@
     "importSuccess": "Import successful",
     "importedCount": "{count} projects imported",
     "csvFormat": "CSV Format: project_number,name,description,client_name,client_reference,budget_hours,hourly_rate,is_billable"
+  },
+  "vacations": {
+    "title": "Vacation Management",
+    "calendar": "Vacation Calendar",
+    "addRequest": "Request Vacation",
+    "employee": "Employee",
+    "startDate": "From",
+    "endDate": "To",
+    "daysCount": "Days",
+    "status": "Status",
+    "notes": "Notes",
+    "balance": "Vacation Balance",
+    "totalDays": "Annual Leave",
+    "usedDays": "Used",
+    "pendingDays": "Pending",
+    "remainingDays": "Remaining",
+    "types": {
+      "vacation": "Vacation",
+      "special_leave": "Special Leave",
+      "unpaid": "Unpaid Leave",
+      "sick": "Sick Leave"
+    },
+    "statuses": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "cancelled": "Cancelled"
+    },
+    "noRequests": "No vacation requests"
   },
   "timeTracking": {
     "title": "Time Tracking",

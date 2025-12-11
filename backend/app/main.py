@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import get_settings
 from app.database import init_db
-from app.routers import auth, employees, projects, time_entries, holidays
+from app.routers import auth, employees, projects, time_entries, holidays, vacations
 
 settings = get_settings()
 
@@ -35,6 +35,7 @@ app.include_router(auth.router, prefix=settings.API_V1_PREFIX)
 app.include_router(employees.router, prefix=settings.API_V1_PREFIX)
 app.include_router(projects.router, prefix=settings.API_V1_PREFIX)
 app.include_router(time_entries.router, prefix=settings.API_V1_PREFIX)
+app.include_router(vacations.router, prefix=settings.API_V1_PREFIX)
 app.include_router(holidays.router, prefix=settings.API_V1_PREFIX)
 
 

@@ -15,7 +15,13 @@
     "import": "Importă",
     "export": "Exportă",
     "upload": "Încarcă",
-    "selectFile": "Selectează fișier"
+    "selectFile": "Selectează fișier",
+    "approve": "Aprobă",
+    "reject": "Respinge",
+    "pending": "În așteptare",
+    "approved": "Aprobat",
+    "rejected": "Respins",
+    "days": "zile"
   },
   "auth": {
     "login": "Autentificare",
@@ -33,6 +39,7 @@
     "dashboard": "Panou",
     "employees": "Angajați",
     "projects": "Proiecte",
+    "vacations": "Concedii",
     "timeTracking": "Pontaj",
     "reports": "Rapoarte",
     "settings": "Setări"
@@ -49,6 +56,7 @@
     "hireDate": "Data angajării",
     "weeklyHours": "Ore săptămânale",
     "employeeNumber": "Număr angajat",
+    "vacationDays": "Zile concediu/An",
     "active": "Activ",
     "inactive": "Inactiv"
   },
@@ -72,6 +80,35 @@
     "importSuccess": "Import reușit",
     "importedCount": "{count} proiecte importate",
     "csvFormat": "Format CSV: project_number,name,description,client_name,client_reference,budget_hours,hourly_rate,is_billable"
+  },
+  "vacations": {
+    "title": "Gestionare Concedii",
+    "calendar": "Calendar Concedii",
+    "addRequest": "Solicită Concediu",
+    "employee": "Angajat",
+    "startDate": "De la",
+    "endDate": "Până la",
+    "daysCount": "Zile",
+    "status": "Status",
+    "notes": "Note",
+    "balance": "Sold Concediu",
+    "totalDays": "Concediu anual",
+    "usedDays": "Folosit",
+    "pendingDays": "În așteptare",
+    "remainingDays": "Rămas",
+    "types": {
+      "vacation": "Concediu",
+      "special_leave": "Concediu special",
+      "unpaid": "Concediu fără plată",
+      "sick": "Concediu medical"
+    },
+    "statuses": {
+      "pending": "În așteptare",
+      "approved": "Aprobat",
+      "rejected": "Respins",
+      "cancelled": "Anulat"
+    },
+    "noRequests": "Nu există cereri de concediu"
   },
   "timeTracking": {
     "title": "Pontaj",
