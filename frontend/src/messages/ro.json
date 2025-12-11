@@ -50,6 +50,7 @@
     "name": "Nume",
     "firstName": "Prenume",
     "lastName": "Nume familie",
+    "nickname": "Poreclă",
     "email": "Email",
     "phone": "Telefon",
     "department": "Departament",
@@ -150,6 +151,38 @@
       "de": "Germană",
       "en": "Engleză",
       "ro": "Română"
+    },
+    "adminOnly": "Acces administrator necesar",
+    "display": {
+      "title": "Setări afișare",
+      "description": "Cum sunt afișate numele angajaților",
+      "nameFormat": "Format nume",
+      "formats": {
+        "full": "Prenume Nume",
+        "last": "Doar Numele",
+        "nickname": "Poreclă (dacă există)"
+      }
+    },
+    "users": {
+      "title": "Gestionare Utilizatori",
+      "description": "Gestionează rolurile și permisiunile utilizatorilor (RBAC)",
+      "name": "Nume",
+      "email": "Email",
+      "role": "Rol",
+      "roles": {
+        "admin": "Administrator",
+        "manager": "Manager",
+        "employee": "Angajat"
+      }
+    },
+    "backup": {
+      "title": "Backup & Export",
+      "description": "Backup baza de date și export date",
+      "downloadDb": "Backup SQLite",
+      "exportJson": "Export JSON"
+    },
+    "account": {
+      "title": "Contul Meu"
     }
   }
 }

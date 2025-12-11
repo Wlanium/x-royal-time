@@ -11,6 +11,7 @@ class Employee(Base):
     employee_number = Column(String(50), unique=True, index=True)
     first_name = Column(String(100), nullable=False)
     last_name = Column(String(100), nullable=False)
+    nickname = Column(String(100), nullable=True)  # Spitzname z.B. "Pjotr"
     email = Column(String(255), unique=True, index=True)
     phone = Column(String(50))
 

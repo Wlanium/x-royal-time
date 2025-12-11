@@ -50,6 +50,7 @@
     "name": "Name",
     "firstName": "First Name",
     "lastName": "Last Name",
+    "nickname": "Nickname",
     "email": "Email",
     "phone": "Phone",
     "department": "Department",
@@ -150,6 +151,38 @@
       "de": "German",
       "en": "English",
       "ro": "Romanian"
+    },
+    "adminOnly": "Admin access required",
+    "display": {
+      "title": "Display Settings",
+      "description": "How employee names are displayed",
+      "nameFormat": "Name Format",
+      "formats": {
+        "full": "First Name Last Name",
+        "last": "Last Name only",
+        "nickname": "Nickname (if available)"
+      }
+    },
+    "users": {
+      "title": "User Management",
+      "description": "Manage user roles and permissions (RBAC)",
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "roles": {
+        "admin": "Administrator",
+        "manager": "Manager",
+        "employee": "Employee"
+      }
+    },
+    "backup": {
+      "title": "Backup & Export",
+      "description": "Backup database and export data",
+      "downloadDb": "SQLite Backup",
+      "exportJson": "JSON Export"
+    },
+    "account": {
+      "title": "My Account"
     }
   }
 }

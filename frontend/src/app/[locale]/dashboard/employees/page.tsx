@@ -28,6 +28,7 @@ interface Employee {
   employee_number: string | null;
   first_name: string;
   last_name: string;
+  nickname: string | null;
   email: string | null;
   department: string | null;
   position: string | null;
@@ -48,6 +49,7 @@ export default function EmployeesPage() {
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
+    nickname: "",
     email: "",
     employee_number: "",
     department: "",
@@ -91,6 +93,7 @@ export default function EmployeesPage() {
       setFormData({
         first_name: employee.first_name,
         last_name: employee.last_name,
+        nickname: employee.nickname || "",
         email: employee.email || "",
         employee_number: employee.employee_number || "",
         department: employee.department || "",
@@ -103,6 +106,7 @@ export default function EmployeesPage() {
       setFormData({
         first_name: "",
         last_name: "",
+        nickname: "",
         email: "",
         employee_number: "",
         department: "",
@@ -132,6 +136,7 @@ export default function EmployeesPage() {
         },
         body: JSON.stringify({
           ...formData,
+          nickname: formData.nickname || null,
           email: formData.email || null,
           employee_number: formData.employee_number || null,
           department: formData.department || null,
@@ -245,6 +250,15 @@ export default function EmployeesPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
+                <Label htmlFor="nickname">{t("nickname")}</Label>
+                <Input
+                  id="nickname"
+                  value={formData.nickname}
+                  onChange={(e) => setFormData({ ...formData, nickname: e.target.value })}
+                  placeholder="z.B. Pjotr"
+                />
+              </div>
+              <div className="space-y-2">
                 <Label htmlFor="employee_number">{t("employeeNumber")}</Label>
                 <Input
                   id="employee_number"
@@ -252,15 +266,15 @@ export default function EmployeesPage() {
                   onChange={(e) => setFormData({ ...formData, employee_number: e.target.value })}
                 />
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="email">{t("email")}</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                />
-              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">{t("email")}</Label>
+              <Input
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">

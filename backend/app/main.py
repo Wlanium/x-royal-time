@@ -4,8 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import get_settings
 from app.database import init_db
 from app.routers import auth, employees, projects, time_entries, holidays, vacations
+from app.routers import settings as settings_router
 
-settings = get_settings()
+app_settings = get_settings()
 
 
 @asynccontextmanager
@@ -17,7 +18,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title=settings.APP_NAME,
+    title=app_settings.APP_NAME,
     lifespan=lifespan,
 )
 
@@ -31,12 +32,13 @@ app.add_middleware(
 )
 
 # Routers
-app.include_router(auth.router, prefix=settings.API_V1_PREFIX)
-app.include_router(employees.router, prefix=settings.API_V1_PREFIX)
-app.include_router(projects.router, prefix=settings.API_V1_PREFIX)
-app.include_router(time_entries.router, prefix=settings.API_V1_PREFIX)
-app.include_router(vacations.router, prefix=settings.API_V1_PREFIX)
-app.include_router(holidays.router, prefix=settings.API_V1_PREFIX)
+app.include_router(auth.router, prefix=app_settings.API_V1_PREFIX)
+app.include_router(employees.router, prefix=app_settings.API_V1_PREFIX)
+app.include_router(projects.router, prefix=app_settings.API_V1_PREFIX)
+app.include_router(time_entries.router, prefix=app_settings.API_V1_PREFIX)
+app.include_router(vacations.router, prefix=app_settings.API_V1_PREFIX)
+app.include_router(holidays.router, prefix=app_settings.API_V1_PREFIX)
+app.include_router(settings_router.router)  # Already has /api/v1/settings prefix
 
 
 @app.get("/health")

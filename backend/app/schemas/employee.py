@@ -8,6 +8,7 @@ class EmployeeBase(BaseModel):
     employee_number: Optional[str] = None
     first_name: str
     last_name: str
+    nickname: Optional[str] = None  # Spitzname z.B. "Pjotr"
     email: Optional[EmailStr] = None
     phone: Optional[str] = None
     department: Optional[str] = None
@@ -26,6 +27,7 @@ class EmployeeUpdate(BaseModel):
     employee_number: Optional[str] = None
     first_name: Optional[str] = None
     last_name: Optional[str] = None
+    nickname: Optional[str] = None
     email: Optional[EmailStr] = None
     phone: Optional[str] = None
     department: Optional[str] = None

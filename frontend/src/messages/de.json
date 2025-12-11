@@ -50,6 +50,7 @@
     "name": "Name",
     "firstName": "Vorname",
     "lastName": "Nachname",
+    "nickname": "Spitzname",
     "email": "E-Mail",
     "phone": "Telefon",
     "department": "Abteilung",
@@ -150,6 +151,38 @@
       "de": "Deutsch",
       "en": "Englisch",
       "ro": "Rumänisch"
+    },
+    "adminOnly": "Nur für Administratoren",
+    "display": {
+      "title": "Anzeige-Einstellungen",
+      "description": "Wie Mitarbeiternamen angezeigt werden",
+      "nameFormat": "Namensformat",
+      "formats": {
+        "full": "Vorname Nachname",
+        "last": "Nur Nachname",
+        "nickname": "Spitzname (falls vorhanden)"
+      }
+    },
+    "users": {
+      "title": "Benutzerverwaltung",
+      "description": "Benutzerrollen und Berechtigungen verwalten (RBAC)",
+      "name": "Name",
+      "email": "E-Mail",
+      "role": "Rolle",
+      "roles": {
+        "admin": "Administrator",
+        "manager": "Manager",
+        "employee": "Mitarbeiter"
+      }
+    },
+    "backup": {
+      "title": "Backup & Export",
+      "description": "Datenbank sichern und Daten exportieren",
+      "downloadDb": "SQLite Backup",
+      "exportJson": "JSON Export"
+    },
+    "account": {
+      "title": "Mein Konto"
     }
   }
 }
