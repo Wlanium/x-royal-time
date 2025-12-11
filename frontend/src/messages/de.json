@@ -11,7 +11,11 @@
     "actions": "Aktionen",
     "yes": "Ja",
     "no": "Nein",
-    "confirm": "Bestätigen"
+    "confirm": "Bestätigen",
+    "import": "Importieren",
+    "export": "Exportieren",
+    "upload": "Hochladen",
+    "selectFile": "Datei auswählen"
   },
   "auth": {
     "login": "Anmelden",
@@ -28,6 +32,7 @@
   "nav": {
     "dashboard": "Dashboard",
     "employees": "Mitarbeiter",
+    "projects": "Projekte",
     "timeTracking": "Zeiterfassung",
     "reports": "Berichte",
     "settings": "Einstellungen"
@@ -47,6 +52,27 @@
     "active": "Aktiv",
     "inactive": "Inaktiv"
   },
+  "projects": {
+    "title": "Projektverwaltung",
+    "addProject": "Projekt anlegen",
+    "projectNumber": "Projektnummer",
+    "name": "Projektname",
+    "description": "Beschreibung",
+    "clientName": "Kunde",
+    "clientReference": "Kundenreferenz",
+    "startDate": "Startdatum",
+    "endDate": "Enddatum",
+    "budgetHours": "Budget (Std.)",
+    "hourlyRate": "Stundensatz",
+    "isBillable": "Abrechenbar",
+    "totalHours": "Erfasste Stunden",
+    "billableAmount": "Abrechnungsbetrag",
+    "assignedEmployees": "Zugewiesene Mitarbeiter",
+    "importCsv": "CSV importieren",
+    "importSuccess": "Import erfolgreich",
+    "importedCount": "{count} Projekte importiert",
+    "csvFormat": "CSV Format: project_number,name,description,client_name,client_reference,budget_hours,hourly_rate,is_billable"
+  },
   "timeTracking": {
     "title": "Zeiterfassung",
     "addEntry": "Eintrag hinzufügen",
@@ -56,6 +82,9 @@
     "breakMinutes": "Pause (Min.)",
     "type": "Typ",
     "notes": "Notizen",
+    "project": "Projekt",
+    "selectProject": "Projekt auswählen",
+    "noProject": "Kein Projekt",
     "types": {
       "work": "Arbeit",
       "break": "Pause",

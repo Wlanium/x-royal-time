@@ -7,6 +7,7 @@ import Link from "next/link";
 import {
   LayoutDashboard,
   Users,
+  FolderKanban,
   Clock,
   FileText,
   Settings,
@@ -26,6 +27,7 @@ import {
 const navItems = [
   { key: "dashboard", icon: LayoutDashboard, href: "/dashboard" },
   { key: "employees", icon: Users, href: "/dashboard/employees" },
+  { key: "projects", icon: FolderKanban, href: "/dashboard/projects" },
   { key: "timeTracking", icon: Clock, href: "/dashboard/time-tracking" },
   { key: "reports", icon: FileText, href: "/dashboard/reports" },
   { key: "settings", icon: Settings, href: "/dashboard/settings" },

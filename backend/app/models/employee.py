@@ -31,3 +31,4 @@ class Employee(Base):
 
     # Relationships
     time_entries = relationship("TimeEntry", back_populates="employee")
+    projects = relationship("Project", secondary="project_employees", back_populates="employees")

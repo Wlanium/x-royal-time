@@ -11,7 +11,11 @@
     "actions": "Acțiuni",
     "yes": "Da",
     "no": "Nu",
-    "confirm": "Confirmă"
+    "confirm": "Confirmă",
+    "import": "Importă",
+    "export": "Exportă",
+    "upload": "Încarcă",
+    "selectFile": "Selectează fișier"
   },
   "auth": {
     "login": "Autentificare",
@@ -28,6 +32,7 @@
   "nav": {
     "dashboard": "Panou",
     "employees": "Angajați",
+    "projects": "Proiecte",
     "timeTracking": "Pontaj",
     "reports": "Rapoarte",
     "settings": "Setări"
@@ -47,6 +52,27 @@
     "active": "Activ",
     "inactive": "Inactiv"
   },
+  "projects": {
+    "title": "Gestionare Proiecte",
+    "addProject": "Adaugă Proiect",
+    "projectNumber": "Număr Proiect",
+    "name": "Nume Proiect",
+    "description": "Descriere",
+    "clientName": "Client",
+    "clientReference": "Referință Client",
+    "startDate": "Data de început",
+    "endDate": "Data de sfârșit",
+    "budgetHours": "Buget (ore)",
+    "hourlyRate": "Tarif orar",
+    "isBillable": "Facturabil",
+    "totalHours": "Ore înregistrate",
+    "billableAmount": "Sumă facturabilă",
+    "assignedEmployees": "Angajați alocați",
+    "importCsv": "Importă CSV",
+    "importSuccess": "Import reușit",
+    "importedCount": "{count} proiecte importate",
+    "csvFormat": "Format CSV: project_number,name,description,client_name,client_reference,budget_hours,hourly_rate,is_billable"
+  },
   "timeTracking": {
     "title": "Pontaj",
     "addEntry": "Adaugă înregistrare",
@@ -56,6 +82,9 @@
     "breakMinutes": "Pauză (min)",
     "type": "Tip",
     "notes": "Note",
+    "project": "Proiect",
+    "selectProject": "Selectează proiect",
+    "noProject": "Fără proiect",
     "types": {
       "work": "Muncă",
       "break": "Pauză",

@@ -18,6 +18,7 @@ class TimeEntry(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     employee_id = Column(Integer, ForeignKey("employees.id"), nullable=False)
+    project_id = Column(Integer, ForeignKey("projects.id"), nullable=True, index=True)
 
     date = Column(Date, nullable=False, index=True)
     start_time = Column(Time, nullable=True)
@@ -34,3 +35,4 @@ class TimeEntry(Base):
 
     # Relationships
     employee = relationship("Employee", back_populates="time_entries")
+    project = relationship("Project", back_populates="time_entries")

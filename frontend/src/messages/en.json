@@ -11,7 +11,11 @@
     "actions": "Actions",
     "yes": "Yes",
     "no": "No",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "import": "Import",
+    "export": "Export",
+    "upload": "Upload",
+    "selectFile": "Select file"
   },
   "auth": {
     "login": "Login",
@@ -28,6 +32,7 @@
   "nav": {
     "dashboard": "Dashboard",
     "employees": "Employees",
+    "projects": "Projects",
     "timeTracking": "Time Tracking",
     "reports": "Reports",
     "settings": "Settings"
@@ -47,6 +52,27 @@
     "active": "Active",
     "inactive": "Inactive"
   },
+  "projects": {
+    "title": "Project Management",
+    "addProject": "Add Project",
+    "projectNumber": "Project Number",
+    "name": "Project Name",
+    "description": "Description",
+    "clientName": "Client",
+    "clientReference": "Client Reference",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "budgetHours": "Budget (hrs)",
+    "hourlyRate": "Hourly Rate",
+    "isBillable": "Billable",
+    "totalHours": "Tracked Hours",
+    "billableAmount": "Billable Amount",
+    "assignedEmployees": "Assigned Employees",
+    "importCsv": "Import CSV",
+    "importSuccess": "Import successful",
+    "importedCount": "{count} projects imported",
+    "csvFormat": "CSV Format: project_number,name,description,client_name,client_reference,budget_hours,hourly_rate,is_billable"
+  },
   "timeTracking": {
     "title": "Time Tracking",
     "addEntry": "Add Entry",
@@ -56,6 +82,9 @@
     "breakMinutes": "Break (min)",
     "type": "Type",
     "notes": "Notes",
+    "project": "Project",
+    "selectProject": "Select project",
+    "noProject": "No project",
     "types": {
       "work": "Work",
       "break": "Break",

@@ -6,6 +6,7 @@ from app.models.time_entry import EntryType
 
 class TimeEntryBase(BaseModel):
     employee_id: int
+    project_id: Optional[int] = None  # Projekt für Abrechnung
     date: date
     start_time: Optional[time] = None
     end_time: Optional[time] = None
@@ -19,6 +20,7 @@ class TimeEntryCreate(TimeEntryBase):
 
 
 class TimeEntryUpdate(BaseModel):
+    project_id: Optional[int] = None
     start_time: Optional[time] = None
     end_time: Optional[time] = None
     break_minutes: Optional[int] = None
@@ -29,6 +31,7 @@ class TimeEntryUpdate(BaseModel):
 class TimeEntryRead(TimeEntryBase):
     id: int
     created_at: datetime
+    project_name: Optional[str] = None  # Für Anzeige
 
     class Config:
         from_attributes = True
